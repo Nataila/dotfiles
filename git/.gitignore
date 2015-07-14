@@ -1,0 +1,12 @@
+*.bak
+*.egg-info
+*.py[cod]
+*.swp
+*.zip
+.coverage
+.noseids
+.svn
+.tox
+bin
+lib
+include

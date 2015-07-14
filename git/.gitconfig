@@ -1,0 +1,43 @@
+[user]
+	name = Nataila
+	email = ccfive814@gmail.com
+[push]
+	; for git 1.8
+	default = simple
+[core]
+	editor = vim
+	excludesfile = ~/dotfiles/git/.gitignore
+	quotepath = false
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+
+[alias]
+	st = status
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	br = branch
+	ci = commit -v
+	ca = commit -a -v
+	pl = pull
+	ps = push
+	co = checkout
+
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan

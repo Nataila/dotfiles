@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/opt/star-map-check-sys/client/templates'
+let g:netrw_dirhist_2='/opt/star-map-check-sys/client/templates/check-views'
+let g:netrw_dirhist_3='/opt/star-map-check-sys/client/templates'
+let g:netrw_dirhist_4='/opt/star-map-check-sys/client/templates/check-views'
+let g:netrw_dirhist_5='/opt/star-map-check-sys'
+let g:netrw_dirhist_6='/opt/star-map-check-sys/server'
+let g:netrw_dirhist_7='/opt/star-map-check-sys/client/templates/check-views'
+let g:netrw_dirhist_8='/opt/star-map-check-sys/client/templates'
+let g:netrw_dirhist_9='/opt/star-map-check-sys/client/templates/check-views'
