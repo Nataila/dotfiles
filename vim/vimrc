@@ -1,0 +1,272 @@
+" Nataila <nataila.cc.815@gmail.com>
+
+"========="
+" General "
+"========="
+set nu " 显示行号
+set ruler
+syntax on " 语法高亮
+set hlsearch " 搜索高亮
+set incsearch " Real-time search
+set foldmethod=indent " The kind of folding used for the current window 
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+"set mouse=a
+au BufNewFile,BufRead *.less set filetype=less
+"set nowrap " 不自动换行
+set foldlevel=99 " 默认不折叠
+set cindent
+set tabstop=4 " 一次缩进四个字符
+set shiftwidth=4
+set smarttab
+set autoindent " 自动缩进
+set softtabstop=4
+set smartindent shiftwidth=4
+set expandtab " Use the space to instead of tab
+set smartindent
+set showmatch " When a bracket is inserted, briefly jump to the matching one
+set showmode " Show the mode
+set nobackup " 缺省不产生备份文件
+set noswapfile " 不产生swap文件
+set cursorline " 突出显示当前行
+"hi cursorline gui=UNDERLINE cterm=UNDERLINE
+" 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制, 不需要可以去掉
+" 好处：误删什么的，如果以前屏幕打开，可以找回
+" set t_ti= t_te=
+set fileencodings=utf-8,gb18030,cp936,big5 " Set the encode
+set t_Co=256 " If under tty, use 256
+let g:solarized_termcolors=256
+set pastetoggle=<F10> "" Bind `F10` to `:set paste`
+set autowrite " 自动保存
+set ignorecase " 搜索忽略大小写
+set smartcase " 有一个极以上仍然大小写敏感
+
+" Display `tab` and `trail space`
+set list
+set listchars=tab:>-,trail:.
+
+" cc is only exist in `Vim7.3`
+set cc=81 " Short for colorcolumn
+
+"================"
+" Color Settings "
+" ==============="
+colorscheme desert
+""try
+""    set background=dark
+""    "colorscheme Tomorrow-Night-Bright
+""    colorscheme cc
+""    "highlight Nornal ctermbg=NONE
+""    "highlight NonText ctermbg=NONE
+""catch /^Vim\%((\a\+)\)\=:E185/
+""    colorscheme default
+""endtry
+
+
+
+" Auto add head info
+" .py file auto add header
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1,  "# -*- coding: utf-8 -*-")
+    call append(2,  "# @Author: Nataila")
+    call append(3,  "# @Date  :" . strftime('%Y-%m-%d', localtime()))
+    normal G
+    normal o
+    normal o
+endf
+
+" .js file auto add header
+function HeaderJavascript()
+    call setline(1, "/**")
+	call append(1, "* @description")
+	call append(2, "*   + description")
+    call append(3,  "# cc @ " . strftime('%Y-%m-%d %T', localtime()))
+	call append(4, "*/")
+    normal G
+    normal o
+    normal o
+endf
+autocmd bufnewfile *.js call HeaderJavascript()
+
+autocmd FileType python set expandtab
+autocmd FileType javascript,vue set cursorcolumn " 突出显示当前列
+set smartindent "智能缩进"
+set cindent "C语言风格缩进"
+set autoindent "自动缩进"
+
+execute pathogen#infect()
+
+autocmd bufnewfile *.py call HeaderPython()
+
+" .sh file auto add header
+function HeaderBash()
+    call setline(1, "#!/bin/bash")
+    call append(1,  "# Nataila @ " . strftime('%Y-%m-%d %T', localtime()))
+    normal G
+    normal o
+    normal o
+endf
+autocmd bufnewfile *.sh call HeaderBash()
+
+" autocmd BufWritePost *.py call Flake8()
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint'
+let g:ycm_show_diagnostics_ui = 0
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint']
+noremap <F3> :Autoformat<CR>:w<CR>
+
+" CSS lint
+let g:CSSLint_FileTypeList = ['css', 'less', 'sess']
+
+" nnoremap to :tabnew<cr>
+ nnoremap tn :tabnext<CR>
+ nnoremap tp :tabprev<CR>
+" nnoremap tc :tabclose<CR>
+" nnoremap tm :tabmove<CR>
+" nnoremap tf :tabfirst<CR>
+" nnoremap tl :tablast<CR>
+
+set nocompatible " Use the vim's keyboard setting, not vi
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'mattn/emmet-vim'
+Plugin 'editorconfig-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'posva/vim-vue'
+Plugin 'scrooloose/syntastic'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+call vundle#end()
+filetype plugin indent on
+
+" editorconfig
+let g:EditorConfig_core_mode = 'python_external'
+
+" YCM
+let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_python_binary_path = '/usr/bin/python2.7'
+let g:ycm_semantic_triggers = {
+\   'sass': [ 're!^\s{2}', 're!:\s+' ],
+\ }
+let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" UltiSnips
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:UltiSnipsExpandTrigger = '<C-o>'
+let g:UltiSnipsListSnippets = '<C-Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+
+:set pastetoggle=<F5>
+au BufRead,BufNewFile *.scss set filetype=scss.css
+
+
+"flake8 打开，保存自动检测
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+" 保存python文件时删除多余空格
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+set re=1
+set ttyfast
+set lazyredraw
+
+"vim-commentary
+"为python和shell等添加注释
+autocmd FileType python,shell,coffee set commentstring=#\ %s
+"修改注释风格
+autocmd FileType java,c,cpp set commentstring=//\ %s
+
+let g:airline_theme='simple'
+let g:airline_powerline_fonts=1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline#extensions#tabline#enabled = 1
+
+" 识别es6
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+autocmd BufRead,BufNewFile *.es setfiletype javascript
+autocmd BufRead,BufNewFile *.wxml setfiletype html
+
+" 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
+" autocmd VimEnter * NERDTree
+" 按下 tr 调出/隐藏 NERDTree
+map tr :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+map  :silent! NERDTreeToggle
+" 将 NERDTree 的窗口设置在 vim 窗口的右侧（默认为左侧）
+" let NERDTreeWinPos="right"
+" 当打开 NERDTree 窗口时，自动显示 Bookmarks
+let NERDTreeShowBookmarks=1
+
+" nerdtree nerdtreetabs {{{
+" map <leader>n :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+" s/v 分屏打开文件
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapOpenVSplit = 'v'
+
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" 关闭同步
+" let g:nerdtree_tabs_synchronize_view=0
+" let g:nerdtree_tabs_synchronize_focus=0
+" 是否自动开启nerdtree
+" thank to @ListenerRi, see https://github.com/wklken/k-vim/issues/165
+let g:nerdtree_tabs_open_on_console_startup=0
+let g:nerdtree_tabs_open_on_gui_startup=0
+" }}}
+"
+" 设置标记一列的背景颜色和数字一行颜色一致
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" for error highlight，防止错误整行标红导致看不清
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
+
+" tagbar
+nmap tt :TagbarToggle<CR>
+let g:tagbar_autofocus = 1 "启动时光标在tagbar的界面
