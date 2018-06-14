@@ -68,7 +68,7 @@ colorscheme desert
 function HeaderPython()
     call setline(1, "#!/usr/bin/env python")
     call append(1,  "# -*- coding: utf-8 -*-")
-    call append(2,  "# @Author: Nataila")
+    call append(2,  "# @Author: cc")
     call append(3,  "# @Date  :" . strftime('%Y-%m-%d', localtime()))
     normal G
     normal o
@@ -101,7 +101,7 @@ autocmd bufnewfile *.py call HeaderPython()
 " .sh file auto add header
 function HeaderBash()
     call setline(1, "#!/bin/bash")
-    call append(1,  "# Nataila @ " . strftime('%Y-%m-%d %T', localtime()))
+    call append(1,  "# cc @ " . strftime('%Y-%m-%d %T', localtime()))
     normal G
     normal o
     normal o
