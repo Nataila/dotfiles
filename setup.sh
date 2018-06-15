@@ -13,13 +13,13 @@ install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
-create_softlink() {
+create_link() {
     from_file=$1
     to_file=$2
-    echo $from_file, $to_file
+    echo $to_file
     if [ ! -f "$to_file" ];then
         ln -s $PWD/$from_file $to_file
-        echo "Makee soft link from $from_file to $to_file"
+        echo "Make soft link from $from_file to $to_file"
     else
         read -p "$to_file is exists, continue will remove your file, continue? [y or n]" _remove
         if [[ $_remove = "y" ]]; then
@@ -34,5 +34,8 @@ if [ ! -d $OH_MY_ZSH ];then
     install_oh_my_zsh
 fi
 
-create_softlink "vim/vimrc" $HOME/".vimrc"
-
+create_link "vim/vimrc" $HOME/".vimrc"
+create_link "tmux/tmux.conf" $HOME/".tmux.conf"
+create_link "git/gitconfig" $HOME/".gitconfig"
+create_link "zsh/zshrc" $HOME/".zshrc"
+create_link "git/gitignore" $HOME/".gitignore"
