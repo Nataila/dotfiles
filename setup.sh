@@ -36,6 +36,7 @@ if [ ! -d $OH_MY_ZSH ];then
   install_oh_my_zsh
 fi
 
+# pathogen
 install_pathogen() {
   if [ ! -d "${VUNDLE}" ]; then
     mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -43,6 +44,7 @@ install_pathogen() {
   fi
 }
 
+# vundle
 install_vundle(){
   if [ -d "${VUNDLE}" ]; then
     vim +PluginInstall +qall
@@ -53,6 +55,7 @@ install_vundle(){
   fi
 }
 
+
 install_pathogen
 install_vundle
 
@@ -61,3 +64,4 @@ create_link "tmux/tmux.conf" $HOME/".tmux.conf"
 create_link "git/gitconfig" $HOME/".gitconfig"
 create_link "zsh/zshrc" $HOME/".zshrc"
 create_link "git/gitignore" $HOME/".gitignore"
+create_link "zsh/theme/zeta.zsh-theme" $HOME/".oh-my-zsh/theme/zeta.zsh-theme"
