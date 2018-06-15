@@ -19,7 +19,7 @@ create_link() {
   from_file=$1
   to_file=$2
   echo $to_file
-  if [ ! -f "$to_file" ];then
+  if [ ! -h "$to_file" ];then
     ln -s $PWD/$from_file $to_file
     echo "Make soft link from $from_file to $to_file"
   else
@@ -63,5 +63,6 @@ create_link "vim/vimrc" $HOME/".vimrc"
 create_link "tmux/tmux.conf" $HOME/".tmux.conf"
 create_link "git/gitconfig" $HOME/".gitconfig"
 create_link "zsh/zshrc" $HOME/".zshrc"
+create_link "zsh/.zsh" $HOME/".zsh"
 create_link "git/gitignore" $HOME/".gitignore"
-create_link "zsh/theme/zeta.zsh-theme" $HOME/".oh-my-zsh/theme/zeta.zsh-theme"
+create_link "zsh/themes/zeta.zsh-theme" $HOME/".oh-my-zsh/themes/zeta.zsh-theme"
