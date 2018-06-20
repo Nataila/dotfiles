@@ -134,7 +134,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Plugin 'mattn/emmet-vim'
 Plugin 'editorconfig-vim'
 Plugin 'SirVer/ultisnips'
@@ -143,8 +143,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'posva/vim-vue'
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 filetype plugin indent on
 
