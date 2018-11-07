@@ -8,7 +8,7 @@ set ruler
 syntax on " 语法高亮
 set hlsearch " 搜索高亮
 set incsearch " Real-time search
-set foldmethod=indent " The kind of folding used for the current window 
+" set foldmethod=indent " The kind of folding used for the current window 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "set mouse=a
 au BufNewFile,BufRead *.less set filetype=less
@@ -61,6 +61,9 @@ colorscheme desert
 ""    colorscheme default
 ""endtry
 
+set ts=4
+set expandtab
+
 
 
 " Auto add head info
@@ -89,7 +92,7 @@ endf
 autocmd bufnewfile *.js call HeaderJavascript()
 
 autocmd FileType python set expandtab
-autocmd FileType javascript,vue set cursorcolumn " 突出显示当前列
+autocmd FileType javascript,vue,sass,scss set cursorcolumn " 突出显示当前列
 set smartindent "智能缩进"
 set cindent "C语言风格缩进"
 set autoindent "自动缩进"
@@ -129,6 +132,8 @@ let g:CSSLint_FileTypeList = ['css', 'less', 'sess']
 " nnoremap tl :tablast<CR>
 
 set nocompatible " Use the vim's keyboard setting, not vi
+set backspace=indent,eol,start
+
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -143,6 +148,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'posva/vim-vue'
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
@@ -220,6 +227,8 @@ let g:airline#extensions#tabline#enabled = 1
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.es setfiletype javascript
 autocmd BufRead,BufNewFile *.wxml setfiletype html
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
 " autocmd VimEnter * NERDTree
