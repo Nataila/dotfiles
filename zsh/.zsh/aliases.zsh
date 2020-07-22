@@ -37,4 +37,3 @@ alias tmuxo="tmux attach -d -t"
 alias tmuxn="tmux new -s"
 alias p="proxychains4"
 alias subl=\''/Applications/Sublime Text.app/Contents/SharedSupport/bin'\'
-
