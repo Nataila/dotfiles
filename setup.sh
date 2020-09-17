@@ -7,12 +7,16 @@ PATHOGEN=$HOME"/.vim/autoload/pathogen.vim"
 
 which zsh > /dev/null
 if [ $? -eq 1 ]; then
-  sudo apt-get install zsh
+  sudo apt-get install zsh -y
   chsh -s /bin/zsh
 fi
 
 install_oh_my_zsh() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+install_tmux_theme() {
+  git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 }
 
 create_link() {
@@ -58,6 +62,7 @@ install_vundle(){
 
 install_pathogen
 install_vundle
+install_tmux_theme
 
 create_link "vim/vimrc" $HOME/".vimrc"
 create_link "tmux/tmux.conf" $HOME/".tmux.conf"
