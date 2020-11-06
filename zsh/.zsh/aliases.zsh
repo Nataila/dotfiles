@@ -38,3 +38,5 @@ alias tmuxn="tmux new -s"
 alias p="proxychains4 -f /Users/nataila/.proxychains/proxychains.conf"
 alias subl=\''/Applications/Sublime Text.app/Contents/SharedSupport/bin'\'
 alias curltime="curl -o /dev/null -s -w connect:%{time_connect},starttransfer:%{time_starttransfer},timetotal:%{time_total}:%{time_namelookup}:%{speed_download}"
+
+alias brclean = "git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d"
