@@ -41,3 +41,7 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[http]
+    proxy=socks5://127.0.0.1:7890
+[https]
+    proxy=socks5://127.0.0.1:7890
