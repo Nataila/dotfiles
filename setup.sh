@@ -72,14 +72,14 @@ install_vundle
 install_tmux
 install_tmux_theme
 
-# if [ ! -d $OH_MY_ZSH ];then
-#   install_oh_my_zsh
-# fi
-# 
-# create_link "vim/vimrc" $HOME/".vimrc"
-# create_link "tmux/tmux.conf" $HOME/".tmux.conf"
-# create_link "git/gitconfig" $HOME/".gitconfig"
+if [ ! -d $OH_MY_ZSH ];then
+  install_oh_my_zsh
+fi
+
+create_link "vim/vimrc" $HOME/".vimrc"
+create_link "tmux/tmux.conf" $HOME/".tmux.conf"
+create_link "git/gitconfig" $HOME/".gitconfig"
 create_link "zsh/zshrc" $HOME/".zshrc"
-# create_link "zsh/.zsh" $HOME/".zsh"
-# create_link "git/gitignore" $HOME/".gitignore"
-# create_link "zsh/themes/zeta.zsh-theme" $HOME/".oh-my-zsh/themes/zeta.zsh-theme"
+create_link "zsh/.zsh" $HOME/".zsh"
+create_link "git/gitignore" $HOME/".gitignore"
+create_link "zsh/themes/zeta.zsh-theme" $HOME/".oh-my-zsh/themes/zeta.zsh-theme"
