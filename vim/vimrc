@@ -140,16 +140,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Bundle 'Valloric/YouCompleteMe'
-Plugin 'mattn/emmet-vim'
+" Plugin 'mattn/emmet-vim'
 Plugin 'editorconfig-vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'posva/vim-vue'
-Plugin 'scrooloose/syntastic'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" Plugin 'cakebaker/scss-syntax.vim'
+" Plugin 'posva/vim-vue'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'Chiel92/vim-autoformat'
+" Plugin 'fatih/vim-go'
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()

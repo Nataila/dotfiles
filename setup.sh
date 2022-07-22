@@ -15,6 +15,10 @@ install_oh_my_zsh() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
+install_tmux() {
+    apt install tmux -y
+}
+
 install_tmux_theme() {
   git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 }
@@ -23,7 +27,7 @@ create_link() {
   from_file=$1
   to_file=$2
   echo $to_file
-  if [ ! -h "$to_file" ];then
+  if [ ! -f "$to_file" ];then
     ln -s $PWD/$from_file $to_file
     echo "Make soft link from $from_file to $to_file"
   else
@@ -35,11 +39,6 @@ create_link() {
     fi
   fi
 }
-
-if [ ! -d $OH_MY_ZSH ];then
-  install_oh_my_zsh
-fi
-
 # pathogen
 install_pathogen() {
   if [ ! -d "${VUNDLE}" ]; then
@@ -59,15 +58,28 @@ install_vundle(){
   fi
 }
 
+install_zsh_plugin() {
+    dir_path=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    if [ ! -f "${dir_path}" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    fi
+}
 
+
+install_zsh_plugin
 install_pathogen
 install_vundle
+install_tmux
 install_tmux_theme
 
-create_link "vim/vimrc" $HOME/".vimrc"
-create_link "tmux/tmux.conf" $HOME/".tmux.conf"
-create_link "git/gitconfig" $HOME/".gitconfig"
+# if [ ! -d $OH_MY_ZSH ];then
+#   install_oh_my_zsh
+# fi
+# 
+# create_link "vim/vimrc" $HOME/".vimrc"
+# create_link "tmux/tmux.conf" $HOME/".tmux.conf"
+# create_link "git/gitconfig" $HOME/".gitconfig"
 create_link "zsh/zshrc" $HOME/".zshrc"
-create_link "zsh/.zsh" $HOME/".zsh"
-create_link "git/gitignore" $HOME/".gitignore"
-create_link "zsh/themes/zeta.zsh-theme" $HOME/".oh-my-zsh/themes/zeta.zsh-theme"
+# create_link "zsh/.zsh" $HOME/".zsh"
+# create_link "git/gitignore" $HOME/".gitignore"
+# create_link "zsh/themes/zeta.zsh-theme" $HOME/".oh-my-zsh/themes/zeta.zsh-theme"
