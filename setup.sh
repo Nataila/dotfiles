@@ -2,7 +2,7 @@
 # cc @ 2018-06-14 14:55:54
 
 OH_MY_ZSH=$HOME"/.oh-my-zsh"
-VUNDLE=$HOME"/.vim/bundle/Vundle.vim"
+# VUNDLE=$HOME"/.vim/bundle/Vundle.vim"
 PATHOGEN=$HOME"/.vim/autoload/pathogen.vim"
 
 which zsh > /dev/null
@@ -20,7 +20,7 @@ install_tmux() {
 }
 
 install_tmux_theme() {
-  git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+  cp -r plugins/tmux/tmux-themepack ~/.tmux-themepack
 }
 
 create_link() {
@@ -61,20 +61,21 @@ install_vundle(){
 install_zsh_plugin() {
     dir_path=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     if [ ! -f "${dir_path}" ]; then
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	git clone https://gitee.com/hailin_cool/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
     fi
 }
 
 
-install_zsh_plugin
-install_pathogen
-install_vundle
-install_tmux
-install_tmux_theme
-
 if [ ! -d $OH_MY_ZSH ];then
   install_oh_my_zsh
 fi
+
+install_zsh_plugin
+install_pathogen
+# install_vundle
+install_tmux
+install_tmux_theme
 
 create_link "vim/vimrc" $HOME/".vimrc"
 create_link "tmux/tmux.conf" $HOME/".tmux.conf"

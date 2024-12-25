@@ -136,12 +136,12 @@ set backspace=indent,eol,start
 
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
 " Bundle 'Valloric/YouCompleteMe'
 " Plugin 'mattn/emmet-vim'
-Plugin 'editorconfig-vim'
+"Plugin 'editorconfig-vim'
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 " Plugin 'cakebaker/scss-syntax.vim'
@@ -152,7 +152,7 @@ Plugin 'editorconfig-vim'
 " Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()
+"call vundle#end()
 
 "自动补全
 :inoremap ( ()<ESC>i
